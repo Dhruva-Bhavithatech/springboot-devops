@@ -16,7 +16,7 @@ pipeline {
 
         stage('SonarQube') {
     steps {
-        withSonarQubeEnv('sonarqube') {
+        withSonarQubeEnv('SonarQube') {
             sh '''
                 mvn sonar:sonar \
                 -Dsonar.projectKey=springboot-devops
