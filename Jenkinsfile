@@ -19,8 +19,6 @@ pipeline {
         sh '''
         mvn sonar:sonar \
         -Dsonar.projectKey=springboot-devops \
-       # -Dsonar.host.url=http://172.17.0.1:9000 \
-       # -Dsonar.token=$SONAR_TOKEN
         '''
     }
 }
