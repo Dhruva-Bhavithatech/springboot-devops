@@ -16,10 +16,12 @@ pipeline {
 
         stage('SonarQube') {
     steps {
-        sh '''
-        mvn sonar:sonar \
-        -Dsonar.projectKey=springboot-devops \
-        '''
+        withSonarQubeEnv('sonarqube') {
+            sh '''
+                mvn sonar:sonar \
+                -Dsonar.projectKey=springboot-devops
+            '''
+        }
     }
 }
         stage('Quality Gate') {
