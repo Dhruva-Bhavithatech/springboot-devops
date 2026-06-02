@@ -38,5 +38,21 @@
 
         </plugins>
     </build>
+    <distributionManagement>
 
+    <repository>
+        <id>nexus-releases</id>
+        <url>
+            http://172.17.0.1:8081/repository/maven-releases-sample-dhruva/
+        </url>
+    </repository>
+
+    <snapshotRepository>
+        <id>nexus-snapshots</id>
+        <url>
+            http://172.17.0.1:8081/repository/maven-snapshots-sample-dhruva/
+        </url>
+    </snapshotRepository>
+
+</distributionManagement>
 </project>
