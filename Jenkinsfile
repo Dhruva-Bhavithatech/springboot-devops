@@ -8,12 +8,6 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                git 'https://github.com/Dhruva-Bhavithatech/springboot-devops.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'mvn clean package'
