@@ -24,7 +24,12 @@ pipeline {
         '''
     }
 }
-
+        
+        stage('Upload To Nexus') {
+    sh '''
+    mvn deploy
+    '''
+}
         stage('Docker Build') {
             steps {
                 sh '''
