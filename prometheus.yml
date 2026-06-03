@@ -1,0 +1,4 @@
+scrape_configs:
+  - job_name: springboot
+    static_configs:
+      - targets: ['16.52.79.143:8082']

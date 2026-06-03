@@ -45,7 +45,11 @@ pipeline {
                 '''
             }
         }
-
+        stage('Trivy Scan') {
+    steps {
+        sh 'trivy image hello-app:${BUILD_NUMBER}'
+    }
+}
         stage('Docker Push') {
             steps {
                 withCredentials([
