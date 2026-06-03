@@ -70,21 +70,31 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
-                sh '''
-                docker stop hello-app || true
+#        stage('Deploy') {
+ #           steps {
+  #              sh '''
+   #             docker stop hello-app || true
+#
+ #               docker rm hello-app || true
+#
+ #               docker pull dhruvakssample/hello-app:${BUILD_NUMBER}
+#
+ #               docker run -d \
+  #                --name hello-app \
+   #               -p 8082:8082 \
+    #              dhruvakssample/hello-app:${BUILD_NUMBER}
+     #           '''
+      #      }
+       # }
+         stage('Deploy To Kubernetes') {
+    steps {
+        sh '''
+        sed -i "s/IMAGE_TAG/${BUILD_NUMBER}/g" k8s/deployment.yaml
 
-                docker rm hello-app || true
-
-                docker pull dhruvakssample/hello-app:${BUILD_NUMBER}
-
-                docker run -d \
-                  --name hello-app \
-                  -p 8082:8082 \
-                  dhruvakssample/hello-app:${BUILD_NUMBER}
-                '''
-            }
-        }
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+        '''
+    }
+}
     }
 }
